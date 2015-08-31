@@ -1,0 +1,25 @@
+{
+  "name": "pkmn_data_api",
+  "version": "0.0.1",
+  "description": "Pokemon Data API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClumsyCoder/PkmnDataApi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ClumsyCoder/PkmnDataApi/issues"
+  },
+  "homepage": "https://github.com/ClumsyCoder/PkmnDataApi#readme",
+  "dependencies": {
+    "express": "~4.13.3",
+    "mongoose": "~4.1.4",
+    "body-parser": "~1.13.3",
+    "underscore" : "~1.8.3"
+  }
+}
