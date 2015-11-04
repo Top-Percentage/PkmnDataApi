@@ -2,9 +2,9 @@ swagger: '2.0'
 info:
   title: Pokemon Data API
   version: 0.0.1
-host: api.uber.com
+host: localhost:3000
 schemes:
-  - https
+  - http
 basePath: /v1
 produces:
   - application/json
@@ -14,11 +14,56 @@ paths:
       summary: Monsters
       responses:
         '200':
-          description: A list of Pok&eacute;mon
+          description: A list of Pokemon
           schema:
             type: array
             items:
               $ref: '#/definitions/Monster'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /monsters/dex/{dexId}:
+    get:
+      summary: Find Pokemon by National Dex ID
+      parameters:
+        - name: dexId
+          in: path
+          required: true
+          type: integer
+          format: int32
+          description: The National Dex ID corresponding to this Pokemon
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Monster'
+        '400':
+          description: Invalid Dex ID supplied
+        '404':
+          description: Pokemon not found
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /monsters/name/{name}:
+    get:
+      summary: Find Pokemon by North American name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+          description: The name corresponding to this Pokemon
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Monster'
+        '400':
+          description: Invalid name supplied
+        '404':
+          description: Pokemon not found
         default:
           description: Unexpected error
           schema:
@@ -75,27 +120,6 @@ definitions:
           imperial:
             type: string
             description: 'Height of the monster in imperial'
-      base stats:
-        type: object
-        properties:
-          hp:
-            type: integer
-            format: int32
-          attack:
-            type: integer
-            format: int32
-          defense:
-            type: integer
-            format: int32
-          special attack:
-            type: integer
-            format: int32
-          special defense:
-            type: integer
-            format: int32
-          speed:
-            type: integer
-            format: int32
       training:
         type: object
         properties:
@@ -172,6 +196,4 @@ definitions:
         type: integer
         format: int32
       message:
-        type: string
-      fields:
         type: string

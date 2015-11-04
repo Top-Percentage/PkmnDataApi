@@ -67,4 +67,12 @@ monsterSchema.options.toJSON.transform = function (doc, ret) {
     delete ret._id;
 };
 
+monsterSchema.statics.findByDexId = function(dexId, cb) {
+  return this.find({dex: parseInt(dexId)}, cb);
+};
+
+monsterSchema.statics.findByName = function(name, cb) {
+  return this.find({name: new RegExp(name, 'i')}, cb);
+};
+
 module.exports = mongoose.model('Monsters', monsterSchema);
