@@ -2,7 +2,7 @@
   "name": "pkmn_data_api",
   "version": "0.0.1",
   "description": "Pokemon Data API",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,10 @@
     "express": "~4.13.3",
     "mongoose": "~4.1.4",
     "body-parser": "~1.13.3",
-    "underscore" : "~1.8.3"
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-nodemon": "^2.0.4"
   }
 }

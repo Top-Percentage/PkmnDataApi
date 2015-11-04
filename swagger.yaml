@@ -1,0 +1,177 @@
+swagger: '2.0'
+info:
+  title: Pokemon Data API
+  version: 0.0.1
+host: api.uber.com
+schemes:
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /monsters:
+    get:
+      summary: Monsters
+      responses:
+        '200':
+          description: A list of Pok&eacute;mon
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Monster'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Monster:
+    type: object
+    properties:
+      dex:
+        type: integer
+        format: int32
+        description: 'The national dex entry of the given monster'
+      name:
+        type: string
+        description: 'The North American name of the given monster'
+      classification:
+        type: string
+        description: 'The classification of the monster'
+      types:
+        type: array
+        items:
+          type: string
+          description: 'Name of one of the types this monster is'
+      regional dex:
+        type: object
+        properties:
+          Kanto:
+            type: integer
+            format: int32
+          Johto:
+            type: integer
+            format: int32
+          Hoenn:
+            type: integer
+            format: int32
+          Central Kalos:
+            type: integer
+            format: int32
+      weight:
+        type: object
+        properties:
+          metric:
+            type: string
+            description: 'Weight of the monster in metric'
+          imperial:
+            type: string
+            description: 'Weight of the monster in imperial'
+      height:
+        type: object
+        properties:
+          metric:
+            type: string
+            description: 'Height of the monster in metric'
+          imperial:
+            type: string
+            description: 'Height of the monster in imperial'
+      base stats:
+        type: object
+        properties:
+          hp:
+            type: integer
+            format: int32
+          attack:
+            type: integer
+            format: int32
+          defense:
+            type: integer
+            format: int32
+          special attack:
+            type: integer
+            format: int32
+          special defense:
+            type: integer
+            format: int32
+          speed:
+            type: integer
+            format: int32
+      training:
+        type: object
+        properties:
+          catch rate:
+            type: integer
+            format: int32
+          base happiness:
+            type: integer
+            format: int32
+          base experience:
+            type: integer
+            format: int32
+          max experience:
+            type: integer
+            format: int32
+          growth rate:
+            type: string
+          ev yeild:
+            type: object
+            properties:
+              stat:
+                type: string
+              amount:
+                type: integer
+                format: int32
+      breeding:
+        type: object
+        properties:
+          egg groups:
+            type: array
+            items:
+              type: string
+          gender:
+            type: object
+            properties:
+              male:
+                type: number
+                format: double
+              female:
+                type: number
+                format: double
+          egg cycles:
+            type: integer
+            format: int32
+          min egg steps:
+            type: integer
+            format: int32
+          max egg steps:
+            type: integer
+            format: int32
+      moves:
+        type: object
+        properties:
+          name:
+            type: string
+          methods:
+            type: array
+            items:
+              type: object
+              properties:
+                how:
+                  type: string
+                level:
+                  type: integer
+                  format: int32
+                games:
+                  type: array
+                  items:
+                    type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string

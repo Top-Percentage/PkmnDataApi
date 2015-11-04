@@ -14,9 +14,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.enable('trust proxy');
 
-var monsterRoutes = require("./app/routes/monster");
-
-app.use("/monster", monsterRoutes);
+var monsterRoutes = require("./app/routes/monsters");
+app.use("/v1/monsters", monsterRoutes);
 
 // Start the server
 app.listen(3000);
